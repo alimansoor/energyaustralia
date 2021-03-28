@@ -1,0 +1,46 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./scripts.js"></script>
+    <title>Document</title>
+    <style>
+        ul {
+            list-style-type: none;
+        }
+        
+        .festival {
+            margin-left: 15px
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="festival">
+
+    </ul>
+</body>
+<script>
+    festivals.forEach(elem => {
+        let list = document.createElement("li");
+        list.innerText = `Record Label ${elem.recordLabel}`;
+        document.querySelector("#festival").appendChild(list);
+        elem.bands.forEach(band => {
+            let ul = document.createElement("ul");
+            ul.setAttribute('class', 'band');
+            let elemBand = document.createElement("li");
+            elemBand.setAttribute('class', 'name');
+            elemBand.innerText = `Band ${band.name}`;
+            let elemFestival = document.createElement("li");
+            elemFestival.setAttribute('class', 'festival');
+            elemFestival.innerText = `${band.festival} Festival`;
+            ul.appendChild(elemBand);
+            ul.appendChild(elemFestival);
+            list.appendChild(ul);
+        })
+    })
+</script>
+
+</html>
