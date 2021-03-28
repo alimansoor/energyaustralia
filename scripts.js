@@ -122,12 +122,18 @@ response.forEach((element, index, array) => {
     }
 });
 
+let temp = null;
+
 for (let i = 0; i < festivals.length - 1; i++) {
     for (let j = i + 1; j < festivals.length; j++) {
-        if (festivals[i].recordLabel == festivals[j].recordLabel) {
+        if (festivals[i].recordLabel.toLowerCase() == festivals[j].recordLabel.toLowerCase()) {
             festivals[i].bands.push(festivals[j].bands[0])
             festivals[i].bands.sort(compareBands)
             festivals.splice(j, 1);
+        } else if (festivals[i].recordLabel.toLowerCase() > festivals[j].recordLabel.toLowerCase()) {
+            temp = festivals[i];
+            festivals[i] = festivals[j];
+            festivals[j] = temp;
         }
     }
 }
@@ -152,4 +158,4 @@ function compareFestivals(a, b) {
     return 0;
 }
 
-console.log(festivals.sort(compareFestivals));
+console.log(festivals);
